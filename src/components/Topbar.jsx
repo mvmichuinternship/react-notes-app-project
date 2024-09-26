@@ -3,7 +3,7 @@ import IconButton from "./basic-components/IconButton";
 
 function Topbar() {
   return (
-    <div className="flex justify-between w-full px-4 py-3">
+    <div className="flex justify-between w-full px-4 py-3 shadow-lg">
       <div className="w-full flex justify-between items-center font-bold">
         <a href="/" className="text-3xl text-rose-300">
           Notes!

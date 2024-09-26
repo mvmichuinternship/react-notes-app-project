@@ -5,7 +5,8 @@ export const notesData=[{
     progress:50,
     isComplete:false,
     deadline:"2024-09-29",
-    isReminder:false
+    isReminder:false,
+    uid: 1
 },
 {
     title:"Complete mini project",
@@ -14,7 +15,8 @@ export const notesData=[{
     progress:20,
     isComplete:false,
     deadline:"2024-09-25",
-    isReminder:true
+    isReminder:true,
+    uid:2
 },
 {
     title:"Make polaroids",
@@ -23,6 +25,7 @@ export const notesData=[{
     progress:10,
     isComplete:false,
     deadline:"2024-09-26",
-    isReminder:true
+    isReminder:true,
+    uid:1
 },
 ]

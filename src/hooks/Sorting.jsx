@@ -4,11 +4,11 @@ import { ItemManagerContext } from "../context/ItemContext";
 function useSorting(category, nameorder,descorder){
 
     console.log("term",category, nameorder, descorder)
-    const {items} = useContext(ItemManagerContext)
-    const sorted = items
+    const {items, singleUser} = useContext(ItemManagerContext)
+    const sorted = items.filter((item)=> {return(singleUser.id==item.uid)})
     if(String(category)==="name"){
         // if(nameorder===true){
-            sorted.sort((a,b)=> a.title.localeCompare(b.title))
+            sorted.sort((a,b)=>  a.title.localeCompare(b.title))
             console.log("a",sorted)
         // }
         // else if(nameorder===false){
@@ -18,7 +18,7 @@ function useSorting(category, nameorder,descorder){
     }
     else if(String(category)==="description"){
         // if(descorder===true){
-            sorted.sort((a,b)=> a.description.localeCompare(b.description))
+            sorted.sort((a,b)=>  a.description.localeCompare(b.description))
             console.log(sorted)
         // }
         // else if(descorder===false){
