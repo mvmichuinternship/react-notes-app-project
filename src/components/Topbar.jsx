@@ -1,85 +1,30 @@
+import { RWebShare } from "react-web-share";
 import IconButton from "./basic-components/IconButton";
 
 function Topbar() {
   return (
-    <div className="flex justify-between w-full">
-      <div className="w-[60%] flex justify-evenly items-center font-bold">
-        <a href="/" className="text-3xl">
-          Farmiest!
+    <div className="flex justify-between w-full px-4 py-3">
+      <div className="w-full flex justify-between items-center font-bold">
+        <a href="/" className="text-3xl text-rose-300">
+          Notes!
         </a>
-        <ul className="flex text-xl gap-x-4">
+        <ul className="flex text-xl gap-x-4" >
           <li>
-            <a href="" className="text-emerald-400 underline">
-              Home
-            </a>
+          <RWebShare data={
+              {title:"See your notes", text:"Shared by mv", url:"http://localhost:3000/"}
+            }onClick={()=>{console.log("Sharing")}}>
+              <IconButton className={
+          "w-fit rounded-md bg-rose-300 border border-rose-200 text-white shadow-md"
+        }
+        title={"Share"}
+        isRightArrow={false}
+        />
+            </RWebShare>
           </li>
-          <li>
-            <a href="">Store</a>
-          </li>
-          <li>
-            <a href="">Contact</a>
-          </li>
-          <li>
-            <a href="">About</a>
-          </li>
+          
         </ul>
       </div>
-      <div className="w-[40%] flex text-xl gap-x-4 ">
-        <div className="flex">
-          <IconButton
-            className={"w-max px-4 border-2 border-black"}
-            icon={"location.png"}
-            isIcon={true}
-            onClick={() => {
-              console.log("Clicked");
-            }}
-          />
-          <IconButton
-            className={"w-max px-4 border-2 border-black"}
-            icon={"search.png"}
-            isIcon={true}
-            onClick={() => {
-              console.log("Clicked");
-            }}
-          />
-        </div>
-        <div>
-          <IconButton
-            className={"w-max border-2 border-black"}
-            icon={"account.png"}
-            isDropdown={false}
-            isIcon={true}
-            onClick={() => {
-              console.log("Clicked");
-            }}
-            title={"Account"}
-          />
-        </div>
-        <div>
-          <IconButton
-            className={"w-max border-2 border-black"}
-            icon={"bag.png"}
-            isDropdown={false}
-            isIcon={true}
-            onClick={() => {
-              console.log("Clicked");
-            }}
-            title={"Bag"}
-          />
-        </div>
-        <div>
-          <IconButton
-            className={"w-max border-2 border-black"}
-            icon={"globe.png"}
-            isDropdown={true}
-            isIcon={true}
-            onClick={() => {
-              console.log("Clicked");
-            }}
-            title={"EN"}
-          />
-        </div>
-      </div>
+      
     </div>
   );
 }

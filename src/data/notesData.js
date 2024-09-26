@@ -4,7 +4,7 @@ export const notesData=[{
     image:"book.png",
     progress:50,
     isComplete:false,
-    deadline:"29-09-2024",
+    deadline:"2024-09-29",
     isReminder:false
 },
 {
@@ -13,16 +13,16 @@ export const notesData=[{
     image:"project.png",
     progress:20,
     isComplete:false,
-    deadline:"25-09-2024",
+    deadline:"2024-09-25",
     isReminder:true
 },
 {
     title:"Make polaroids",
     description:"Edit pictures and make cute polaroids",
     image:"polaroid.png",
-    progress:0,
+    progress:10,
     isComplete:false,
-    deadline:"26-09-2024",
+    deadline:"2024-09-26",
     isReminder:true
 },
 ]

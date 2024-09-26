@@ -15,7 +15,8 @@ const actions = {
   ADD_ITEM: "ADD_ITEM",
   REMOVE_ITEM: "REMOVE_ITEM",
   EDIT_ITEM: "EDIT_ITEM",
-  GET_BY_ID: "GET_BY_ID"
+  GET_BY_ID: "GET_BY_ID",
+  EMPTY_SINGLE_ITEM: "EMPTY_SINGLE_ITEM",
 };
 // reducer function
 const reducer = (state, action) => {
@@ -46,28 +47,50 @@ const reducer = (state, action) => {
         singleItem: state.singleItem,
       };
       case actions.GET_BY_ID:
-        const getById = state.items.filter(
-          (item) => item.title === action.item_title
-        );
+        // if(action.item_title!==""){
+          var getById = state.items.find(
+            (item) => item.title === action.item_title
+          );
+        // }
+        // else {
+        //   const emptyList = {
+        //     title:  "",
+        //     description:  "",
+        //     image: "",
+        //     progress:  "",
+        //     completed: false,
+        //     deadline:  "",
+        //     reminder:  true,
+        // }
+        //   getById = emptyList
+        // }
+        
         return {
-          singleItem: getById[0],
+          singleItem: getById,
           items:[...state.items]
         };
+        case actions.EMPTY_SINGLE_ITEM:
+          const empty = {}
+          return {
+            singleItem:empty,
+          items:[...state.items]
+          };
     case actions.EDIT_ITEM:
+      // var newEdit = state.items.find(
+      //   (item) => item.title === action.item_title
+      // )
+      const newEdit= {
+        title: action.payload.item_title,
+        description: action.payload.item_desc,
+        image: action.payload.item_image,
+        progress: action.payload.item_progress,
+        isComplete: action.payload.item_completed,
+        deadline: action.payload.item_deadline,
+        isReminder: action.payload.item_reminder,
+      }
       return {
         singleItem: state.singleItem,
-        items: [
-          ...state.items,
-          {
-            title: action.item_title,
-            description: action.item_desc,
-            image: action.item_image,
-            progress: action.item_progress,
-            isComplete: action.item_completed,
-            deadline: Date(action.item_deadline),
-            isReminder: action.item_reminder,
-          },
-        ],
+    items: [...state.items.filter( item => item.title !== newEdit.title), newEdit]
       };
     default:
         return state
@@ -99,8 +122,11 @@ export const ItemManagerProvider = ({ children }) => {
     getSingleItem: (item_title) => {
         dispatch({ type: actions.GET_BY_ID, item_title });
       },
-    editItem:(item_title, item_desc, item_image, item_progress, item_completed, item_deadline, item_reminder)=>{
-        dispatch({type:actions.EDIT_ITEM, item_title, item_desc, item_image, item_progress, item_completed, item_deadline, item_reminder})
+      emptySingleItem: () => {
+        dispatch({ type: actions.EMPTY_SINGLE_ITEM });
+      },
+    editItem:({item_title, item_desc, item_image, item_progress, item_completed, item_deadline, item_reminder})=>{
+        dispatch({type:actions.EDIT_ITEM, payload:{item_title, item_desc, item_image, item_progress, item_completed, item_deadline, item_reminder}})
     }
   };
 

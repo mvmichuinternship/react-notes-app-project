@@ -120,7 +120,7 @@ function Card({
               <div className="text-start text-xs">{userOccupation}</div>
             </div>
           </div>
-          <Avatar imgAlt={imgAlt} imgSrc={imgSrc} className={"w-[40px] border border-white rounded-md relative bottom-20 left-56"}/>
+          <Avatar imgAlt={imgAlt} imgSrc={imgSrc} className={"w-[44px] border border-white rounded-md relative bottom-20 left-56"}/>
         </div>
       )}
 

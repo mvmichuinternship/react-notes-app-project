@@ -13,7 +13,7 @@ function IconButton({ isIcon, title, isDropdown, className, icon, onClick, isRig
       {isIcon && (
           <img className="w-4" src={icon} alt="icon" />
       )}
-      {title && <button>{title}</button>}
+      {title && <button >{title}</button>}
       {isDropdown && <img className="w-5" src="image.png" alt="" />}
       {isRightArrow && <img className="w-3 h-1" src="right-arrow.png" alt="" />}
 
