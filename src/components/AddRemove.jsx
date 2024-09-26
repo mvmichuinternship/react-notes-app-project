@@ -16,24 +16,29 @@ function AddRemove() {
   const searchRef = useRef(null);
   const selectRef = useRef(null);
 
-  const { addItem, removeItem, items, editItem, singleItem, emptySingleItem, singleUser } =
-    useContext(ItemManagerContext);
+  const {
+    addItem,
+    removeItem,
+    items,
+    editItem,
+    singleItem,
+    emptySingleItem,
+    singleUser,
+  } = useContext(ItemManagerContext);
 
-    // const len = items.length
-    // const lastObj = items[len-1]
-   
+  // const len = items.length
+  // const lastObj = items[len-1]
 
   const [itemData, setItemData] = useState({
-    item_title:  "",
-    item_desc:  "",
+    item_title: "",
+    item_desc: "",
     item_image: "",
-    item_progress:  "",
+    item_progress: "",
     item_completed: false,
-    item_deadline:  "",
-    item_reminder:  true,
-    uid: singleUser.id
+    item_deadline: "",
+    item_reminder: true,
+    uid: singleUser.id,
   });
-  
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -51,7 +56,6 @@ function AddRemove() {
   }, []);
 
   useEffect(() => {
-   
     console.log(singleItem);
     console.log(itemData);
 
@@ -64,21 +68,19 @@ function AddRemove() {
         item_completed: singleItem.isComplete || false,
         item_deadline: singleItem.deadline || "",
         item_reminder: singleItem.isReminder || true,
-        uid: singleUser.id
+        uid: singleUser.id,
       });
     }
   }, [singleItem, items]);
- 
-  function SubmitHandler(){
-// console.log("------------------------------------------------")
-//     console.log(singleUser)
-//     console.log(itemData)
-    if(items.includes(singleItem)){
-      
-      editItem(itemData)
-    }
-    else{
-      addItem(itemData)
+
+  function SubmitHandler() {
+    // console.log("------------------------------------------------")
+    //     console.log(singleUser)
+    //     console.log(itemData)
+    if (items.includes(singleItem)) {
+      editItem(itemData);
+    } else {
+      addItem(itemData);
     }
   }
 
@@ -162,29 +164,28 @@ function AddRemove() {
         </span>
       </div>
       <div className="flex w-full gap-x-4">
-      <IconButton
-        className={
-          "w-full rounded-md bg-rose-300 border border-rose-200 text-white shadow-md"
-        }
-        title={"Add"}
-        isRightArrow={false}
-        onClick={SubmitHandler}
-      />
-      <IconButton
-        className={
-          "w-full rounded-md bg-rose-300 border border-rose-200 text-white shadow-md"
-        }
-        title={"Delete"}
-        isRightArrow={false}
-        // disabled={itemData.length==="undefined"}
-        onClick={()=>{
-          removeItem(itemData.item_title)
-          // console.log(itemData.length)
-          emptySingleItem()
-        }}
-      />
+        <IconButton
+          className={
+            "w-full rounded-md bg-rose-300 border border-rose-200 text-white shadow-md"
+          }
+          title={"Add"}
+          isRightArrow={false}
+          onClick={SubmitHandler}
+        />
+        <IconButton
+          className={
+            "w-full rounded-md bg-rose-300 border border-rose-200 text-white shadow-md"
+          }
+          title={"Delete"}
+          isRightArrow={false}
+          // disabled={itemData.length==="undefined"}
+          onClick={() => {
+            removeItem(itemData.item_title);
+            // console.log(itemData.length)
+            emptySingleItem();
+          }}
+        />
       </div>
-      
     </div>
   );
 }

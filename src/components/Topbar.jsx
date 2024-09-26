@@ -8,23 +8,29 @@ function Topbar() {
         <a href="/" className="text-3xl text-rose-300">
           Notes!
         </a>
-        <ul className="flex text-xl gap-x-4" >
+        <ul className="flex text-xl gap-x-4">
           <li>
-          <RWebShare data={
-              {title:"See your notes", text:"Shared by mv", url:"http://localhost:3000/"}
-            }onClick={()=>{console.log("Sharing")}}>
-              <IconButton className={
-          "w-fit rounded-md bg-rose-300 border border-rose-200 text-white shadow-md"
-        }
-        title={"Share"}
-        isRightArrow={false}
-        />
+            <RWebShare
+              data={{
+                title: "See your notes",
+                text: "Shared by mv",
+                url: "https://main--notes-management-mini-proj.netlify.app/",
+              }}
+              onClick={() => {
+                console.log("Sharing");
+              }}
+            >
+              <IconButton
+                className={
+                  "w-fit rounded-md bg-rose-300 border border-rose-200 text-white shadow-md"
+                }
+                title={"Share"}
+                isRightArrow={false}
+              />
             </RWebShare>
           </li>
-          
         </ul>
       </div>
-      
     </div>
   );
 }

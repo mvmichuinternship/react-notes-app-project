@@ -3,7 +3,6 @@ import cn from "clsx";
 import IconButton from "./IconButton";
 import Avatar from "./Avatar";
 
-
 function Card({
   className,
   cardType,
@@ -11,12 +10,20 @@ function Card({
   dishName,
   dishPrice,
   onClick,
-  feedbackTitle, feedbackDescription,
+  feedbackTitle,
+  feedbackDescription,
   userName,
   userOccupation,
   wideName,
   widePrice,
-  infoData, infoName, classNameLeft, classNameRight, buttonClass, imgSrc, imgAlt, avatarClassName
+  infoData,
+  infoName,
+  classNameLeft,
+  classNameRight,
+  buttonClass,
+  imgSrc,
+  imgAlt,
+  avatarClassName,
 }) {
   return (
     <div
@@ -30,7 +37,11 @@ function Card({
       {cardType === "ecom" && (
         <div className="w-48 h-64 p-2 flex flex-col justify-between rounded-md shadow-md bg-white">
           <div className="w-full h-[60%] bg-amber-100 rounded-sm flex justify-center items-center">
-            <Avatar imgAlt={imgAlt} imgSrc={imgSrc} className={avatarClassName}/>
+            <Avatar
+              imgAlt={imgAlt}
+              imgSrc={imgSrc}
+              className={avatarClassName}
+            />
           </div>
           <div className="flex flex-col w-full text-start">
             <div className="text-xs">{dishType}</div>
@@ -109,25 +120,37 @@ function Card({
           <div className="flex w-full h-full flex-col justify-between">
             <div className="flex  justify-between items-start">
               <div>
-              <div className="text-start w-[90%] text-sm font-bold">{feedbackTitle}</div>
-              <div className="text-start w-[90%] text-xs text-ellipsis">{feedbackDescription}</div>
+                <div className="text-start w-[90%] text-sm font-bold">
+                  {feedbackTitle}
+                </div>
+                <div className="text-start w-[90%] text-xs text-ellipsis">
+                  {feedbackDescription}
+                </div>
               </div>
-              
+
               <img src="quotes-icon.png" className="w-8 h-5" alt="" />
             </div>
             <div className=" bg-rose-200 text-white flex-col h rounded-md p-3">
-              <div className="text-start text-xs font-bold">Progress percentage: {userName}</div>
+              <div className="text-start text-xs font-bold">
+                Progress percentage: {userName}
+              </div>
               <div className="text-start text-xs">{userOccupation}</div>
             </div>
           </div>
-          <Avatar imgAlt={imgAlt} imgSrc={imgSrc} className={"w-[44px] border border-white rounded-md relative bottom-20 left-56"}/>
+          <Avatar
+            imgAlt={imgAlt}
+            imgSrc={imgSrc}
+            className={
+              "w-[44px] border border-white rounded-md relative bottom-20 left-56"
+            }
+          />
         </div>
       )}
 
       {cardType === "wide" && (
         <div className="w-64 p-2 flex justify-start gap-x-4 bg-white rounded-sm shadow-md">
           <div className="w-20 h-20 bg-amber-100 rounded-sm">
-          <Avatar imgAlt={imgAlt} imgSrc={imgSrc} className={"w-full"}/>
+            <Avatar imgAlt={imgAlt} imgSrc={imgSrc} className={"w-full"} />
           </div>
           <div className="flex flex-col justify-around items-start">
             <div className="text-sm">{wideName}</div>
@@ -178,25 +201,32 @@ function Card({
 
       {cardType === "info" && (
         <>
-        <div className={cn("w-72 h-44 flex shadow-md bg-white")}>
-          <div className={cn("w-48 bg-amber-100 flex flex-col z-1 text-center justify-center items-start px-4", classNameLeft)}>
-            <div className="text-sm satisfy-regular">{infoData}</div>
-            <div className="text-xl">{infoName}</div>
-            <IconButton
-              className={cn("w-fit bg-amber-400 rounded-md text-white text-xs mt-4", buttonClass)}
-              isIcon={false}
-              title={"Shop now"}
-
-            />
-            
+          <div className={cn("w-72 h-44 flex shadow-md bg-white")}>
+            <div
+              className={cn(
+                "w-48 bg-amber-100 flex flex-col z-1 text-center justify-center items-start px-4",
+                classNameLeft
+              )}
+            >
+              <div className="text-sm satisfy-regular">{infoData}</div>
+              <div className="text-xl">{infoName}</div>
+              <IconButton
+                className={cn(
+                  "w-fit bg-amber-400 rounded-md text-white text-xs mt-4",
+                  buttonClass
+                )}
+                isIcon={false}
+                title={"Shop now"}
+              />
+            </div>
+            <div className={cn("w-24 bg-amber-400", classNameRight)}></div>
           </div>
-          <div className={cn("w-24 bg-amber-400", classNameRight)}></div>
-          
-        </div>
-        <Avatar imgAlt={imgAlt} imgSrc={imgSrc} className={"relative bottom-40 left-[64px] w-[224px]  z-500"}/>
-
+          <Avatar
+            imgAlt={imgAlt}
+            imgSrc={imgSrc}
+            className={"relative bottom-40 left-[64px] w-[224px]  z-500"}
+          />
         </>
-        
       )}
     </div>
   );

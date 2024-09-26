@@ -39,14 +39,11 @@ function PageLayout() {
   const filtered = useFiltering(searchText);
   const sorted = useSorting(sortType, nameorder, descorder);
 
-
-
   useEffect(() => {
     // console.log(data.name)
-    const current = items.filter( item => item.uid === singleUser?.id)
+    const current = items.filter((item) => item.uid === singleUser?.id);
     setItemNew(current);
   }, [items, singleUser]);
-  
 
   useEffect(() => {
     setItemNew(filtered);
@@ -98,74 +95,74 @@ function PageLayout() {
                 onChange={(e) => {
                   setSortType(e.target.value);
                 }}
-                
               >
                 <option value="name">By Name</option>
                 <option value="description">By Description</option>
               </select>
             </div>
           </div>
-          
-            {
-              singleUser.id ? (
-                <div className="border border-rose-200 rounded-md bg-rose-300 text-white py-1 px-2 w-[50%]">
-                <button
-              className="w-full"
-              onClick={() => {
-                emptySingleItem();
-              }}
-            >
-              New Note
-            </button>
+
+          {singleUser.id ? (
+            <div className="border border-rose-200 rounded-md bg-rose-300 text-white py-1 px-2 w-[50%]">
+              <button
+                className="w-full"
+                onClick={() => {
+                  emptySingleItem();
+                }}
+              >
+                New Note
+              </button>
             </div>
-              ):(
-                <div className="hidden"></div>
-              )
+          ) : (
+            <div className="hidden"></div>
+          )}
+
+          <div
+            className={
+              itemNew.length !== 0
+                ? `gap-x-2 gap-y-2 flex flex-col items-center py-4  px-4 rounded-xl bg-rose-300 overflow-y-auto`
+                : "bg-white"
             }
-            
-         
-
-
-          <div className={itemNew.length!==0 ?`gap-x-2 gap-y-2 flex flex-col items-center py-4  px-4 rounded-xl bg-rose-300 overflow-y-auto`:"bg-white"}>
-            {itemNew.length!==0 ? itemNew.map(
-              (item, index) =>
-                item.title && (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      getSingleItem(item.title);
-                    }}
-                    className="cursor-pointer"
-                  >
-                    {/* {console.log(item)} */}
-                    <Card
-                      cardType={"feedback"}
-                      feedbackTitle={item.title}
-                      feedbackDescription={item.description}
-                      userName={item.progress}
-                      userOccupation={item.deadline}
-                      imgAlt={"profile"}
-                      imgSrc={item.image}
-                      avatarClassName={""}
-                    />
-                  </div>
-                )
+          >
+            {itemNew.length !== 0 ? (
+              itemNew.map(
+                (item, index) =>
+                  item.title && (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        getSingleItem(item.title);
+                      }}
+                      className="cursor-pointer"
+                    >
+                      {/* {console.log(item)} */}
+                      <Card
+                        cardType={"feedback"}
+                        feedbackTitle={item.title}
+                        feedbackDescription={item.description}
+                        userName={item.progress}
+                        userOccupation={item.deadline}
+                        imgAlt={"profile"}
+                        imgSrc={item.image}
+                        avatarClassName={""}
+                      />
+                    </div>
+                  )
+              )
             ) : (
-              <div>
-                No items found
-              </div>
+              <div>No items found</div>
             )}
           </div>
         </div>
         <div className="border border-r h-full  border-rose-200"></div>
         <div className="flex flex-col w-[80%] items-center px-6">
-          {currentItem &&
-          singleUser.id?
-           <AddRemove /> :
-           <div className="pt-20">
-            No corresponding notes. Select from Workspace to get started.
-           </div>
-           }
+          {currentItem && singleUser.id ? (
+            <AddRemove />
+          ) : (
+            <div className="pt-20">
+              No corresponding notes. Select from Workspace to get started.
+            </div>
+          )}
           {/* <RWebShare data={
               {title:"See your notes", text:"Shared by mv", url:"http://localhost:3000/"}
             }onClick={HandleShare}>
